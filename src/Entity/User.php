@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -14,6 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface
 {
     /**
+     * @Groups("infos:user")
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -21,11 +23,13 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Groups("infos:user")
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
+     * @Groups("infos:user:admin")
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -37,29 +41,39 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Groups("infos:user")
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
     /**
+     * @Groups("infos:user")
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
+     * @Groups("infos:user")
      * @ORM\Column(type="string", length=255)
      */
     private $telephone;
 
     /**
+     * @Groups("infos:user")
      * @ORM\Column(type="string", length=255)
      */
     private $siret;
 
     /**
+     * @Groups("profil:user")
      * @ORM\OneToMany(targetEntity=Garage::class, mappedBy="user", orphanRemoval=true)
      */
     private $garages;
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 
     public function __construct()
     {

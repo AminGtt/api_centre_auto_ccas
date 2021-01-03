@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\PhotoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PhotoRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PhotoRepository::class)
@@ -11,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Photo
 {
     /**
+     * @Groups("annonces:list")
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -18,6 +20,7 @@ class Photo
     private $id;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Column(type="string", length=255)
      */
     private $lien;

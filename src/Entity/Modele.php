@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ModeleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ModeleRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ModeleRepository::class)
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Modele
 {
     /**
+     * @Groups("annonces:list")
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,6 +22,7 @@ class Modele
     private $id;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\Column(type="string", length=255)
      */
     private $nomModele;
@@ -30,6 +33,7 @@ class Modele
     private $annonces;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="modeles")
      * @ORM\JoinColumn(nullable=false)
      */

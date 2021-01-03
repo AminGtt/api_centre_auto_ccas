@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\GarageRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\GarageRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=GarageRepository::class)
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Garage
 {
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,41 +22,49 @@ class Garage
     private $id;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Column(type="string", length=255)
      */
     private $nomGarage;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\Column(type="string", length=255)
      */
     private $mail;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Column(type="string", length=255)
      */
     private $telephone;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Column(type="string", length=255)
      */
     private $adresse;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Column(type="string", length=255)
      */
     private $codePostal;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Column(type="string", length=255)
      */
     private $commune;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\Column(type="string", length=255)
      */
     private $departement;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="garage", orphanRemoval=true)
      */
     private $annonces;

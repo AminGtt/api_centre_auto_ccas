@@ -23,6 +23,9 @@
     "doctrine/common": {
         "version": "3.1.0"
     },
+    "doctrine/data-fixtures": {
+        "version": "1.4.4"
+    },
     "doctrine/dbal": {
         "version": "2.12.1"
     },
@@ -39,6 +42,18 @@
             "./config/packages/prod/doctrine.yaml",
             "./src/Entity/.gitignore",
             "./src/Repository/.gitignore"
+        ]
+    },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "e5b542d4ef47d8a003c91beb35650c76907f7e53"
+        },
+        "files": [
+            "./src/DataFixtures/AppFixtures.php"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
@@ -113,6 +128,15 @@
     },
     "nikic/php-parser": {
         "version": "v4.10.3"
+    },
+    "phpdocumentor/reflection-common": {
+        "version": "2.2.0"
+    },
+    "phpdocumentor/reflection-docblock": {
+        "version": "5.2.2"
+    },
+    "phpdocumentor/type-resolver": {
+        "version": "1.4.0"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -292,6 +316,12 @@
     "symfony/security-http": {
         "version": "v5.2.0"
     },
+    "symfony/serializer": {
+        "version": "v5.2.1"
+    },
+    "symfony/serializer-pack": {
+        "version": "v1.0.4"
+    },
     "symfony/service-contracts": {
         "version": "v2.2.0"
     },
@@ -309,5 +339,8 @@
     },
     "symfony/yaml": {
         "version": "v5.2.0"
+    },
+    "webmozart/assert": {
+        "version": "1.9.1"
     }
 }

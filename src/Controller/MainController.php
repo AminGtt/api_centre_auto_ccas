@@ -2,20 +2,30 @@
 
 namespace App\Controller;
 
-use App\Repository\AnnonceRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UserRepository;
+use App\Repository\MarqueRepository;
+use App\Repository\EnergieRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
     /**
      * @Route("/", name="main", methods={"GET"})
      */
-    public function main(AnnonceRepository $annonceRepository): Response
+    public function main(EnergieRepository $energieRepository, MarqueRepository $marqueRepository, UserRepository $userRepository): Response
     {
+        $energies = $energieRepository->findAll();
+        $marques = $marqueRepository->findAll();
+
         return $this->json([
-            'annonces' => $annonceRepository->findAll(),
-        ], 200);
+            "energies" => $energies,
+            "marques" => $marques,
+            ],
+            200,
+            [], 
+            ["groups" => "home"]
+        );
     }
 }

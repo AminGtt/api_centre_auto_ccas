@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ContactMailRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ContactMailRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ContactMailRepository::class)
@@ -11,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ContactMail
 {
     /**
+     * @Groups("annonces:list")
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -18,21 +20,25 @@ class ContactMail
     private $id;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\Column(type="string", length=255)
      */
     private $nomComplet;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\Column(type="string", length=255)
      */
     private $telephone;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\Column(type="string", length=255)
      */
     private $mail;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\Column(type="string", length=255)
      */
     private $commentaire;

@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\MarqueRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MarqueRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MarqueRepository::class)
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Marque
 {
     /**
+     * @Groups({"home", "annonces:list"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,6 +22,7 @@ class Marque
     private $id;
 
     /**
+     * @Groups({"home", "annonces:list"})
      * @ORM\Column(type="string", length=255)
      */
     private $nomMarque;

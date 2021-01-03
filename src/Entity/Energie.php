@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\EnergieRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EnergieRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=EnergieRepository::class)
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Energie
 {
     /**
+     * @Groups({"home", "annonces:list"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,6 +22,7 @@ class Energie
     private $id;
 
     /**
+     * @Groups({"home", "annonces:list"})
      * @ORM\Column(type="string", length=255)
      */
     private $nomEnergie;

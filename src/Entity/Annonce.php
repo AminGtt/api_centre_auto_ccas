@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnonceRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Annonce
 {
     /**
+     * @Groups("annonces:list")
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,53 +22,63 @@ class Annonce
     private $id;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Column(type="string", length=255)
      */
     private $titre;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Column(type="string", length=255)
      */
     private $prix;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Column(type="date")
      */
     private $anneeMiseEnCirculation;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\Column(type="string", length=255)
      */
     private $kilometrage;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\Column(type="datetime")
      */
     private $dateDepotAnnonce;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\Column(type="string", length=255)
      */
     private $descriptionGenerale;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\ManyToOne(targetEntity=Energie::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $energie;
 
     /**
+     * @Groups({"annonces:list", "profil:user"})
      * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="annonce", orphanRemoval=true)
      */
     private $photos;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $modele;
 
     /**
+     * @Groups("annonces:list")
      * @ORM\OneToMany(targetEntity=ContactMail::class, mappedBy="annonce", orphanRemoval=true)
      */
     private $contactMails;
